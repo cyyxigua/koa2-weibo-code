@@ -26,7 +26,7 @@ router.get('/', async (ctx, next) => {
 })
 
 router.get('/json', async (ctx, next) => {
-  throw Error()
+  // throw Error()
   ctx.body = {
     title: 'koa2 json'
   }

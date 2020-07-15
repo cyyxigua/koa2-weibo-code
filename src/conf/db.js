@@ -1,7 +1,7 @@
 /**
  * @description 存储配置
  * @author cyy
-*/
+ */
 
 const { isProd } = require('../utils/env')
 
