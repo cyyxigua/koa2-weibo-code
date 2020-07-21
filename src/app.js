@@ -13,8 +13,9 @@ const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
 const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 
+// 路由
 const index = require('./routes/index')
-const users = require('./routes/users')
+const userViewRouter = require('./routes/view/user')
 const errorViewRouter = require('./routes/view/error')
 
 const { SECRET } = require('./conf/constants')
@@ -28,11 +29,11 @@ if (isProd) {
 }
 onerror(app, onerrorConf)
 
-app.use(jwtKoa({
-  secret: SECRET
-}).unless({
-  path: [/^\/users\/login/] // 自定义哪些目录忽略 jwt 验证
-}))
+// app.use(jwtKoa({
+//   secret: SECRET
+// }).unless({
+//   path: [/^\/users\/login/] // 自定义哪些目录忽略 jwt 验证
+// }))
 
 // middlewares
 app.use(bodyparser({
@@ -63,7 +64,7 @@ app.use(session({
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 
 // error-handling
