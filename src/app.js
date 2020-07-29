@@ -16,6 +16,7 @@ const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 // 路由
 const index = require('./routes/index')
 const userViewRouter = require('./routes/view/user')
+const userAPIRouter = require('./routes/api/user')
 const errorViewRouter = require('./routes/view/error')
 
 const { SECRET } = require('./conf/constants')
@@ -65,6 +66,7 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
+app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 
 // error-handling
