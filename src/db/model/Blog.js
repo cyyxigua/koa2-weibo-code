@@ -19,7 +19,7 @@ const Blog = seq.define('blog', {
   },
   image: {
     type: STRING,
-    comment: '头像地址'  
+    comment: '图片地址'  
   }
 })
 
