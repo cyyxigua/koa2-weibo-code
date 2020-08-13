@@ -5,5 +5,6 @@
 
 module.exports = {
   DEFAULT_PICTURE: 'https://dwz.cn/rnTnftZs',
-  SECRET: 'cyy_serect#!'
+  SECRET: 'cyy_serect#!',
+  PAGE_SIZE: 5
 }
