@@ -11,7 +11,7 @@ const {loginCheckFailInfo} = require('../model/ErrorInfo')
  * @param {Objext} ctx ctx
  * @param {function} next next
  */
-async function loginChexk(ctx, next) {
+async function loginCheck(ctx, next) {
   if(ctx.session && ctx.session.userInfo) {
     // 已登录
     await next()
@@ -38,6 +38,6 @@ async function loginRedirect(ctx, next) {
 }
 
 module.exports = {
-  loginChexk,
+  loginCheck,
   loginRedirect
 }

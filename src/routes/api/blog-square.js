@@ -4,14 +4,14 @@
  */
 
 const router = require('koa-router')()
-const { loginChexk } = require('../../middlewares/loginChecks')
+const { loginCheck } = require('../../middlewares/loginChecks')
 const { getSquareBlogList } = require('../../controller/blog-square')
 const { getBlogListStr } = require('../../utils/blog')
 
 router.prefix('/api/square')
 
 // 加载更多
-router.get('/loadMore/:pageIndex', loginChexk, async(ctx, next) => {
+router.get('/loadMore/:pageIndex', loginCheck, async(ctx, next) => {
   let { pageIndex } = ctx.params
   pageIndex = parseInt(pageIndex)
   const result = await getSquareBlogList(pageIndex)

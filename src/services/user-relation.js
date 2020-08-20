@@ -3,13 +3,12 @@
  * @author cyy
  */
 
-const User = require('../db/model/User')
-const { UserRelation } = require('../db/model')
+const { User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
 
 /**
  * 获取关注该用户的用户列表，即该用户的粉丝
- * @param {number} folloeweId 被关注人的 id
+ * @param {number} followerId 被关注人的 id
  */
 async function getUsersByFollower(followerId) {
   const result = await User.findAndCountAll({
@@ -39,6 +38,20 @@ async function getUsersByFollower(followerId) {
   }
 }
 
+/**
+ * 添加关注关系
+ * @param {number} userId 用户 id
+ * @param {number} followerId 被关注用户 id
+ */
+async function addFollower(userId, followerId) {
+  const result = await UserRelation.create({
+    userId,
+    followerId
+  })
+  return result.dataValues
+}
+
 module.exports = {
-  getUsersByFollower
+  getUsersByFollower,
+  addFollower
 }
