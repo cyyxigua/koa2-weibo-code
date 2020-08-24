@@ -3,8 +3,7 @@
  * @author cyy
  */
 
-const { Blog } = require('../db/model/index')
-const User = require('../db/model/User')
+const { Blog, User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
 
 /**
@@ -66,7 +65,49 @@ async function getBlogListByUser({ userName, pageIndex = 0, pageSize = 10 }) {
   }
 }
 
+/**
+ * 获取关注者的微博列表
+ * @param {number} userId 用户 ID
+ * @param {number} pageIndex 当前页
+ * @param {number} pageSize 每页显示微博数
+ */
+async function getFollowersBlogList({userId, pageIndex = 0, pageSize = 10}) {
+  const result = await Blog.findAndCountAll({
+    limit: pageSize, // 每页多少条
+    offset: pageSize * pageIndex, // 跳过多少条
+    order: [
+      ['id', 'desc']
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['userName', 'nickName', 'picture']
+      },
+      {
+        model: UserRelation,
+        attributes: ['userId', 'followerId'],
+        where: { userId }
+      }
+    ]
+  })
+  // result.count 是总数，跟分页无关
+  // result.rows 查询结果，数组
+
+  let blogList = result.rows.map(row => row.dataValues)
+  blogList = formatUser(blogList)
+  blogList = blogList.map(blogItem => {
+    blogItem.user = formatUser(blogItem.user.dataValues)
+    return blogItem
+  })
+
+  return {
+    count: result.count,
+    blogList
+  }
+}
+
 module.exports = {
   createBlog,
-  getBlogListByUser
+  getBlogListByUser,
+  getFollowersBlogList
 }
