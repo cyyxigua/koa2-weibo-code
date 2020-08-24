@@ -4,11 +4,11 @@
  */
 
 module.exports = {
-   Z_ID: 2,
+   Z_ID: 1,
    Z_USER_NAME: 'zhangsan',
-   Z_COOKIE: 'weibo.sid=2T9GYQGZeQj3dgKcfSTN6b5glEISQXXO; weibo.sid.sig=SHN3fAvpoW5RmrAqRiPTSabzZ6Q',
+   Z_COOKIE: 'weibo.sid=hPF5uSx9b4UIKtfROcH3IA5UKFqKBTxo; weibo.sid.sig=c6s0P0mlYKWr5XJecnVwjUCR94k',
 
-   L_ID: 1,
+   L_ID: 2,
    L_USER_NAME: 'lisi',
-   L_COOKIE: 'weibo.sid=F3uaMNSUm_mOsI4PupNoiAZZTfvD_nME; weibo.sid.sig=0z9Jb2VKDosrqfM6Lhd9BICgt98'
+   L_COOKIE: 'weibo.sid=29SB-BYTjO1vGBE37IcwayvB88Fs4fAO; weibo.sid.sig=276ibZxcwgkY6NMRxCHCiz9W6m8'
 }
